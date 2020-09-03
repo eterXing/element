@@ -7,6 +7,7 @@
   "dropdown-item": "./packages/dropdown-item/index.js",
   "menu": "./packages/menu/index.js",
   "submenu": "./packages/submenu/index.js",
+  "poppermenu": "./packages/poppermenu/index.js",
   "menu-item": "./packages/menu-item/index.js",
   "menu-item-group": "./packages/menu-item-group/index.js",
   "input": "./packages/input/index.js",

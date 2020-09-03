@@ -8,6 +8,7 @@ import DropdownMenu from '../packages/dropdown-menu/index.js';
 import DropdownItem from '../packages/dropdown-item/index.js';
 import Menu from '../packages/menu/index.js';
 import Submenu from '../packages/submenu/index.js';
+import Poppermenu from '../packages/poppermenu/index.js';
 import MenuItem from '../packages/menu-item/index.js';
 import MenuItemGroup from '../packages/menu-item-group/index.js';
 import Input from '../packages/input/index.js';
@@ -94,6 +95,7 @@ const components = [
   DropdownItem,
   Menu,
   Submenu,
+  Poppermenu,
   MenuItem,
   MenuItemGroup,
   Input,
@@ -212,6 +214,7 @@ export default {
   DropdownItem,
   Menu,
   Submenu,
+  Poppermenu,
   MenuItem,
   MenuItemGroup,
   Input,

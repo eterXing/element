@@ -30,21 +30,21 @@
     components: { ElCollapseTransition },
 
     props: {
-      index: {
+      index: { // 唯一标识
         type: String,
         required: true
       },
-      showTimeout: {
+      showTimeout: { // 显示延时
         type: Number,
         default: 300
       },
-      hideTimeout: {
+      hideTimeout: { // 隐藏延时
         type: Number,
         default: 300
       },
-      popperClass: String,
-      disabled: Boolean,
-      popperAppendToBody: {
+      popperClass: String, // 弹出菜单自定义类名
+      disabled: Boolean, // 禁用
+      popperAppendToBody: { // 添加到body
         type: Boolean,
         default: undefined
       }
@@ -70,15 +70,15 @@
     },
     computed: {
       // popper option
-      appendToBody() {
+      appendToBody() { // 是否插入body
         return this.popperAppendToBody === undefined
           ? this.isFirstLevel
           : this.popperAppendToBody;
       },
-      menuTransitionName() {
+      menuTransitionName() { // icon图标
         return this.rootMenu.collapse ? 'el-zoom-in-left' : 'el-zoom-in-top';
       },
-      opened() {
+      opened() { // 展开
         return this.rootMenu.openedMenus.indexOf(this.index) > -1;
       },
       active() {
@@ -115,7 +115,7 @@
       mode() {
         return this.rootMenu.mode;
       },
-      isMenuPopup() {
+      isMenuPopup() { // 菜单是否为弹框
         return this.rootMenu.isMenuPopup;
       },
       titleStyle() {
@@ -178,6 +178,7 @@
         }
         this.dispatch('ElMenu', 'submenu-click', this);
       },
+      // hover展开
       handleMouseenter(event, showTimeout = this.showTimeout) {
 
         if (!('ActiveXObject' in window) && event.type === 'focus' && !event.relatedTarget) {
@@ -201,6 +202,7 @@
           this.$parent.$el.dispatchEvent(new MouseEvent('mouseenter'));
         }
       },
+      // hover离开
       handleMouseleave(deepDispatch = false) {
         const {rootMenu} = this;
         if (

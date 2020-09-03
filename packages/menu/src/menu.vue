@@ -98,26 +98,26 @@
     },
 
     props: {
-      mode: {
+      mode: { // 模式
         type: String,
         default: 'vertical'
       },
-      defaultActive: {
+      defaultActive: { // 选中
         type: String,
         default: ''
       },
-      defaultOpeneds: Array,
-      uniqueOpened: Boolean,
-      router: Boolean,
-      menuTrigger: {
+      defaultOpeneds: Array, // 默认展开
+      uniqueOpened: Boolean, // 只展开一个
+      router: Boolean, // 路由模式
+      menuTrigger: { // 子菜单点击类型
         type: String,
         default: 'hover'
       },
-      collapse: Boolean,
+      collapse: Boolean, // 折叠
       backgroundColor: String,
       textColor: String,
       activeTextColor: String,
-      collapseTransition: {
+      collapseTransition: { // 动画
         type: Boolean,
         default: true
       }
@@ -134,7 +134,7 @@
       hoverBackground() {
         return this.backgroundColor ? this.mixColor(this.backgroundColor, 0.2) : '';
       },
-      isMenuPopup() {
+      isMenuPopup() { // 你应该很关键
         return this.mode === 'horizontal' || (this.mode === 'vertical' && this.collapse);
       }
     },
@@ -158,6 +158,7 @@
       }
     },
     methods: {
+        // 更新点击路由
       updateActiveIndex(val) {
         const item = this.items[val] || this.items[this.activeIndex] || this.items[this.defaultActive];
         if (item) {
@@ -267,6 +268,9 @@
         if (this.mode === 'horizontal' || this.collapse) {
           this.openedMenus = [];
         }
+        if (this.openedMenus.length > 1) {
+            this.openedMenus = [this.openedMenus[0]]
+        }
 
         if (this.router && hasIndex) {
           this.routeToItem(item, (error) => {
@@ -289,11 +293,13 @@
 
         let indexPath = activeItem.indexPath;
 
-        // 展开该菜单项的路径上所有子菜单
+        // 展开该菜单项的路径上所有子菜单(只展开第一层)
         // expand all submenus of the menu item
-        indexPath.forEach(index => {
-          let submenu = this.submenus[index];
-          submenu && this.openMenu(index, submenu.indexPath);
+        indexPath.forEach((index, idx) => {
+          if (!idx) {
+            let submenu = this.submenus[index];
+            submenu && this.openMenu(index, submenu.indexPath);
+          }
         });
       },
       routeToItem(item, onError) {
